@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Travel Planer App</string>
+    <string name="app_logo">Travel Planer</string>
+    <string name="register_button">Зарегистрироваться</string>
+    <string name="login_button">Войти</string>
+    <string name="firstname">Имя</string>
+    <string name="lastname">Фамилия</string>
+    <string name="login">Введите логин</string>
+    <string name="password">Введите пароль</string>
+    <string name="register_text">Ещё не зарегистрированы?</string>
 </resources>
