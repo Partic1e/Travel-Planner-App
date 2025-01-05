@@ -13,7 +13,7 @@ import com.example.travelplanerapp.databinding.FragmentLoginBinding
 import com.example.travelplanerapp.di.viewModel.ViewModelFactory
 import javax.inject.Inject
 
-class LoginFragment: Fragment(R.layout.fragment_login) {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val binding: FragmentLoginBinding by viewBinding()
 
@@ -43,6 +43,11 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         binding.registerText.setOnClickListener {
             val destination = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             findNavController().navigate(destination)
+        }
+
+        // Переход к фрагменту графа
+        binding.showGraphButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_graphFragment)
         }
     }
 }

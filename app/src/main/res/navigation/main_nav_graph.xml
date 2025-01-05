@@ -14,11 +14,16 @@
         <action
             android:id="@+id/action_loginFragment_to_testFragment"
             app:destination="@id/testFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.travelplanerapp.presenter.register.RegisterFragment"
         android:label="RegisterFragment" />
+
     <fragment
         android:id="@+id/testFragment"
         android:name="com.example.travelplanerapp.presenter.travel.TestFragment"
@@ -28,4 +33,9 @@
             app:argType="string"
             android:defaultValue="undefined" />
     </fragment>
+
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.example.travelplanerapp.presenter.travel.GraphFragment"
+        android:label="GraphFragment" />
 </navigation>
