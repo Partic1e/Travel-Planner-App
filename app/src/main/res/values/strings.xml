@@ -8,4 +8,7 @@
     <string name="login">Введите логин</string>
     <string name="password">Введите пароль</string>
     <string name="register_text">Ещё не зарегистрированы?</string>
+    <string name="create">Создать</string>
+    <string name="list">Список</string>
+    <string name="list_text">Список путешествий</string>
 </resources>
