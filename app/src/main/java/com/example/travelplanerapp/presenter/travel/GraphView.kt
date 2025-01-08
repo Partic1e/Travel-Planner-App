@@ -21,23 +21,37 @@ class GraphView @JvmOverloads constructor(
         color = Color.GRAY
         strokeWidth = 5f
     }
+    private val paintEdgeHighlight = Paint().apply {
+        color = Color.GREEN
+        strokeWidth = 7f
+    }
     private val paintText = Paint().apply {
         color = Color.BLACK
         textSize = 30f
     }
-
-    fun setGraphData(graph: Graph, startCity: String, endCity: String) {
-        this.graph = graph
-        this.startCity = startCity
-        this.endCity = endCity
-        invalidate()
+    private val paintBorder = Paint().apply {
+        color = Color.BLACK
+        style = Paint.Style.STROKE
+        strokeWidth = 5f
     }
 
     private var startCity: String = ""
     private var endCity: String = ""
+    private var cheapestPath: List<String> = emptyList()
+
+    fun setGraphData(graph: Graph, startCity: String, endCity: String, cheapestPath: List<String>) {
+        this.graph = graph
+        this.startCity = startCity
+        this.endCity = endCity
+        this.cheapestPath = cheapestPath
+        invalidate()
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        // Рисуем рамку вокруг графа
+        drawBorder(canvas)
+
         graph?.let { graphData ->
             val positions = calculateNodePositions(graphData.nodes, startCity, endCity)
 
@@ -45,9 +59,17 @@ class GraphView @JvmOverloads constructor(
             graphData.edges.forEach { edge ->
                 val start = positions[edge.from]!!
                 val end = positions[edge.to]!!
-                canvas.drawLine(start.x, start.y, end.x, end.y, paintEdge)
+
+                // Проверяем, принадлежит ли ребро самому дешевому пути
+                val isHighlighted = cheapestPath.zipWithNext()
+                    .any { it.first == edge.from && it.second == edge.to }
+
+                val edgePaint = if (isHighlighted) paintEdgeHighlight else paintEdge
+                canvas.drawLine(start.x, start.y, end.x, end.y, edgePaint)
+
+                // Подписываем стоимость на рёбрах
                 canvas.drawText(
-                    "${edge.price}₽",
+                    "${edge.price.toInt()}₽",
                     (start.x + end.x) / 2,
                     (start.y + end.y) / 2,
                     paintText
@@ -57,9 +79,23 @@ class GraphView @JvmOverloads constructor(
             // Рисуем узлы
             positions.forEach { (city, pos) ->
                 canvas.drawCircle(pos.x, pos.y, 20f, paintNode)
-                canvas.drawText(city, pos.x + 25, pos.y, paintText)
+
+                // Проверка, чтобы текст не выходил за правый край
+                val textX = if (pos.x + 100 > width) pos.x - 100 else pos.x + 25
+                canvas.drawText(city, textX, pos.y, paintText)
             }
         }
+    }
+
+    private fun drawBorder(canvas: Canvas) {
+        val margin = 20f
+        val rect = android.graphics.RectF(
+            margin,
+            margin,
+            width - margin,
+            height - margin
+        )
+        canvas.drawRoundRect(rect, 30f, 30f, paintBorder) // Закруглённая рамка
     }
 
     private fun calculateNodePositions(
@@ -68,22 +104,51 @@ class GraphView @JvmOverloads constructor(
         val positions = mutableMapOf<String, PointF>()
         val width = width.toFloat()
         val height = height.toFloat()
-        val centerY = height / 2f
-        val nodeCount = nodes.size
+        val margin = 40f // Отступ от рамки
+        val availableWidth = width - 2 * margin
+        val availableHeight = height - 2 * margin
 
-        // Ширина между узлами
-        val stepX = width / (nodeCount - 1)
+        // Разделение узлов на уровни
+        val levels = createNodeLevels(graph!!.edges, startCity, endCity)
 
-        // Распределяем узлы
-        for ((index, city) in nodes.withIndex()) {
-            val x = stepX * index
-            val y = when {
-                city == startCity || city == endCity -> centerY // Начальный и конечный на одной линии
-                else -> height / 4 + (index % 2) * height / 2 // Остальные распределяем равномерно
+        // Распределение уровней слева направо
+        val stepX = availableWidth / (levels.size - 1)
+        levels.forEachIndexed { levelIndex, levelNodes ->
+            val levelX = margin + stepX * levelIndex
+            val stepY = availableHeight / (levelNodes.size + 1) // Распределение по вертикали
+
+            levelNodes.forEachIndexed { nodeIndex, city ->
+                val y = margin + stepY * (nodeIndex + 1)
+                positions[city] = PointF(levelX, y)
             }
-            positions[city] = PointF(x, y)
         }
 
         return positions
+    }
+
+    private fun createNodeLevels(
+        edges: List<GraphEdge>, startCity: String, endCity: String
+    ): List<List<String>> {
+        val levels = mutableListOf<List<String>>()
+        val visited = mutableSetOf(startCity)
+
+        // Начальный город
+        levels.add(listOf(startCity))
+
+        // Построение уровней
+        var currentLevel = listOf(startCity)
+        while (currentLevel.isNotEmpty() && !visited.contains(endCity)) {
+            val nextLevel = edges
+                .filter { it.from in currentLevel && it.to !in visited }
+                .map { it.to }
+                .distinct()
+            visited.addAll(nextLevel)
+            if (nextLevel.isNotEmpty()) levels.add(nextLevel)
+            currentLevel = nextLevel
+        }
+
+        // Конечный город
+        levels.add(listOf(endCity))
+        return levels
     }
 }

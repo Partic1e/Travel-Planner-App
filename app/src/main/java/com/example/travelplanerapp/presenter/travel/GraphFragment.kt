@@ -19,24 +19,30 @@ class GraphFragment : Fragment(R.layout.fragment_graph) {
 
         // Пример билетов
         val tickets = listOf(
-            Ticket(1, "Moscow", "Paris", 500.0, "2025-01-10"),
+            Ticket(1, "Moscow", "Paris", 100.0, "2025-01-10"),
             Ticket(2, "Moscow", "Amsterdam", 200.0, "2025-01-11"),
-            Ticket(4, "Paris", "London", 200.0, "2025-01-11"),
-            Ticket(3, "Amsterdam", "Berlin", 300.0, "2025-01-12"),
-            Ticket(5, "London", "Berlin", 300.0, "2025-01-12")
+            Ticket(3, "Moscow", "Minsk", 100.0, "2025-01-11"),
+            Ticket(4, "Paris", "London", 100.0, "2025-01-11"),
+            Ticket(5, "Paris", "Madrid", 100.0, "2025-01-11"),
+            Ticket(6, "Minsk", "London", 300.0, "2025-01-12"),
+            Ticket(7, "Minsk", "Madrid", 300.0, "2025-01-12"),
+            Ticket(8, "Amsterdam", "London", 300.0, "2025-01-12"),
+            Ticket(9, "Amsterdam", "Madrid", 300.0, "2025-01-12"),
+            Ticket(10, "Madrid", "Berlin", 300.0, "2025-01-12"),
+            Ticket(11, "London", "Berlin", 300.0, "2025-01-12")
         )
-        viewModel.loadTickets(tickets)
 
+        // Определяем начальный и конечный города
+        val startCity = tickets.first().departureCity
+        val endCity = tickets.last().arrivalCity
+
+        // Загружаем данные в ViewModel
+        viewModel.loadTickets(tickets, startCity, endCity)
+
+        // Наблюдаем за обновлением графа и самого дешёвого пути
         viewModel.graphLiveData.observe(viewLifecycleOwner) { graph ->
-            // Определяем startCity и endCity из списка билетов
-            val startCity = tickets.first().departureCity
-            val endCity = tickets.last().arrivalCity
-
-            graphView.setGraphData(
-                graph = graph,
-                startCity = startCity,
-                endCity = endCity
-            )
+            val cheapestPath = viewModel.cheapestPathLiveData.value.orEmpty()
+            graphView.setGraphData(graph, startCity, endCity, cheapestPath)
         }
     }
 }
