@@ -27,14 +27,17 @@ class RootTravelFragment : Fragment(R.layout.fragment_root_travel) {
         val userData = RootTravelFragmentArgs.fromBundle(requireArguments()).userData
         binding.userData.text = userData
 
+        val navController = childFragmentManager.findFragmentById(R.id.travel_container)?.findNavController()
+            ?: throw IllegalStateException("NavController for travel_container not found")
+
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.create -> {
-                    findNavController().navigate(R.id.createFragment)
+                    navController.navigate(R.id.createFragment)
                     true
                 }
                 R.id.list -> {
-                    findNavController().navigate(R.id.routesFragment)
+                    navController.navigate(R.id.routesFragment)
                     true
                 }
                 else -> false
