@@ -21,7 +21,7 @@ class LoginViewModel @Inject constructor(
     fun loginUser(login: String, password: String) {
         viewModelScope.launch {
             val user = loginByLoginUseCase(UserParam(login = login, password = password))
-            _userEntityLiveData.value = user
+            _userEntityLiveData.postValue(user)
         }
     }
 }

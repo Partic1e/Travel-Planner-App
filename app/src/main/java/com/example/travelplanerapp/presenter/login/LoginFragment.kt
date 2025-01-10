@@ -35,9 +35,15 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                 login = binding.loginEditText.text.toString(),
                 password = binding.passwordEditText.text.toString()
             )
-            val userData = "${loginViewModel.userEntityLiveData.value?.firstName} ${loginViewModel.userEntityLiveData.value?.lastName}"
-            val destination = LoginFragmentDirections.actionLoginFragmentToRootTravelFragment(userData)
-            findNavController().navigate(destination)
+
+            loginViewModel.userEntityLiveData.observe(viewLifecycleOwner) { user ->
+                if (user != null) {
+                    val userData = "${user.firstName} ${user.lastName}"
+                    val action = LoginFragmentDirections.actionLoginFragmentToRootTravelFragment(userData)
+                    findNavController().navigate(action)
+                    loginViewModel.userEntityLiveData.removeObservers(viewLifecycleOwner)
+                }
+            }
         }
 
         binding.registerText.setOnClickListener {
