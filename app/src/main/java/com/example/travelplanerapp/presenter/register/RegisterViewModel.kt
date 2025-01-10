@@ -2,7 +2,7 @@ package com.example.travelplanerapp.presenter.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.travelplanerapp.data.model.User
+import com.example.travelplanerapp.data.entity.UserEntity
 import com.example.travelplanerapp.domain.usecase.RegisterUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +14,7 @@ class RegisterViewModel @Inject constructor(
     fun registerUser(firstName: String, lastName: String, login: String, password: String) {
         viewModelScope.launch {
             registerUseCase(
-                User(
+                UserEntity(
                     firstName = firstName,
                     lastName = lastName,
                     login = login,

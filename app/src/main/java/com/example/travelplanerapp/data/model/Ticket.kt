@@ -1,9 +1,11 @@
 package com.example.travelplanerapp.data.model
 
+data class TicketResponse(
+    val success: Boolean,
+    val data: List<Ticket>,
+    val currency: String
+)
+
 data class Ticket(
-    val id: Int,
-    val startCity: String,
-    val endCity: String,
-    val date: Long,
     val price: Int
 )

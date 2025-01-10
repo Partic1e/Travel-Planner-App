@@ -1,4 +1,4 @@
-package com.example.travelplanerapp.presenter.travel.list
+package com.example.travelplanerapp.presenter.travel.routes
 
 import android.content.Context
 import android.os.Bundle
@@ -13,16 +13,16 @@ import com.example.travelplanerapp.databinding.FragmentListBinding
 import com.example.travelplanerapp.di.viewModel.ViewModelFactory
 import javax.inject.Inject
 
-class ListFragment : Fragment(R.layout.fragment_list) {
+class RoutesFragment : Fragment(R.layout.fragment_list) {
 
     private val binding: FragmentListBinding by viewBinding()
 
-    private val adapter = RouteAdapter()
+    private val adapter = RoutesAdapter()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: ListViewModel by viewModels { viewModelFactory }
+    private val viewModel: RoutesViewModel by viewModels { viewModelFactory }
 
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
@@ -33,7 +33,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding.travelList) {
-            adapter = this@ListFragment.adapter
+            adapter = this@RoutesFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 

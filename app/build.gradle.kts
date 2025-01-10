@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -79,4 +80,5 @@ dependencies {
 
 
     implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.code.gson:gson:2.8.9")
 }
