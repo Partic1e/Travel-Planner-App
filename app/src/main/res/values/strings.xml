@@ -8,4 +8,16 @@
     <string name="login">Введите логин</string>
     <string name="password">Введите пароль</string>
     <string name="register_text">Ещё не зарегистрированы?</string>
+    <string name="create">Создать</string>
+    <string name="list">Список</string>
+    <string name="list_text">Список путешествий</string>
+    <string name="create_route_title">Создание путешествия</string>
+    <string name="start_city_hint">Начальный город</string>
+    <string name="add_cities_button">Добавить города</string>
+    <string name="create_route_button">Создать маршрут</string>
+    <string name="add_city_button">Добавить</string>
+    <string name="complete_button">Готово</string>
+    <string name="city">Введите город</string>
+    <string name="date_desc">date picker</string>
+    <string name="route_name">Введите название путешествия</string>
 </resources>

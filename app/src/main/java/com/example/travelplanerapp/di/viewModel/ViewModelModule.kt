@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelplanerapp.presenter.login.LoginViewModel
 import com.example.travelplanerapp.presenter.register.RegisterViewModel
+import com.example.travelplanerapp.presenter.travel.create.CreateViewModel
+import com.example.travelplanerapp.presenter.travel.routes.RoutesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -23,4 +25,14 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     fun bindRegisterViewModel(viewModel: RegisterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RoutesViewModel::class)
+    fun bindListViewModel(viewModel: RoutesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateViewModel::class)
+    fun bindCreateViewModel(viewModel: CreateViewModel): ViewModel
 }

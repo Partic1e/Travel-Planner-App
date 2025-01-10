@@ -1,11 +1,11 @@
 package com.example.travelplanerapp.domain.repository
 
-import com.example.travelplanerapp.data.model.User
+import com.example.travelplanerapp.data.entity.UserEntity
 import com.example.travelplanerapp.data.model.UserParam
 
 interface UserRepository {
 
-    suspend fun saveUser(user: User)
+    suspend fun saveUser(userEntity: UserEntity)
 
-    suspend fun loadUser(userParam: UserParam): User
+    suspend fun loadUser(userParam: UserParam): UserEntity
 }

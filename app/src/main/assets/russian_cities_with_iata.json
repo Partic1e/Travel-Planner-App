@@ -1,0 +1,154 @@
+[
+    {
+        "city": "Москва",
+        "iata_code": "SVO"
+    },
+    {
+        "city": "Санкт-Петербург",
+        "iata_code": "LED"
+    },
+    {
+        "city": "Новосибирск",
+        "iata_code": "OVB"
+    },
+    {
+        "city": "Екатеринбург",
+        "iata_code": "SVX"
+    },
+    {
+        "city": "Казань",
+        "iata_code": "KZN"
+    },
+    {
+        "city": "Нижний Новгород",
+        "iata_code": "GOJ"
+    },
+    {
+        "city": "Челябинск",
+        "iata_code": "CEK"
+    },
+    {
+        "city": "Самара",
+        "iata_code": "KUF"
+    },
+    {
+        "city": "Ростов-на-Дону",
+        "iata_code": "ROV"
+    },
+    {
+        "city": "Уфа",
+        "iata_code": "UFA"
+    },
+    {
+        "city": "Воронеж",
+        "iata_code": "VOZ"
+    },
+    {
+        "city": "Красноярск",
+        "iata_code": "KJA"
+    },
+    {
+        "city": "Пермь",
+        "iata_code": "PEE"
+    },
+    {
+        "city": "Тюмень",
+        "iata_code": "TJM"
+    },
+    {
+        "city": "Владивосток",
+        "iata_code": "VVO"
+    },
+    {
+        "city": "Иркутск",
+        "iata_code": "IKT"
+    },
+    {
+        "city": "Барнаул",
+        "iata_code": "BAX"
+    },
+    {
+        "city": "Томск",
+        "iata_code": "TOF"
+    },
+    {
+        "city": "Сочи",
+        "iata_code": "AER"
+    },
+    {
+        "city": "Краснодар",
+        "iata_code": "KRR"
+    },
+    {
+        "city": "Ульяновск",
+        "iata_code": "ULY"
+    },
+    {
+        "city": "Омск",
+        "iata_code": "OMS"
+    },
+    {
+        "city": "Мурманск",
+        "iata_code": "MMK"
+    },
+    {
+        "city": "Астрахань",
+        "iata_code": "ASF"
+    },
+    {
+        "city": "Тула",
+        "iata_code": "TUL"
+    },
+    {
+        "city": "Калуга",
+        "iata_code": "KLF"
+    },
+    {
+        "city": "Ярославль",
+        "iata_code": "ARJ"
+    },
+    {
+        "city": "Саратов",
+        "iata_code": "RTW"
+    },
+    {
+        "city": "Симферополь",
+        "iata_code": "SIP"
+    },
+    {
+        "city": "Кемерово",
+        "iata_code": "KEJ"
+    },
+    {
+        "city": "Ижевск",
+        "iata_code": "IJK"
+    },
+    {
+        "city": "Набережные Челны",
+        "iata_code": "NBC"
+    },
+    {
+        "city": "Тамбов",
+        "iata_code": "TBW"
+    },
+    {
+        "city": "Киров",
+        "iata_code": "KVX"
+    },
+    {
+        "city": "Пенза",
+        "iata_code": "PEZ"
+    },
+    {
+        "city": "Кострома",
+        "iata_code": "KMQ"
+    },
+    {
+        "city": "Архангельск",
+        "iata_code": "ARJ"
+    },
+    {
+        "city": "Смоленск",
+        "iata_code": "LNX"
+    }
+]
