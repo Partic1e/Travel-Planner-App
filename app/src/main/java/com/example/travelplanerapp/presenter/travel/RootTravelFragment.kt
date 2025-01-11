@@ -9,8 +9,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.travelplanerapp.R
 import com.example.travelplanerapp.appComponent
 import com.example.travelplanerapp.databinding.FragmentRootTravelBinding
-import com.example.travelplanerapp.presenter.travel.create.CreateFragment
-import com.example.travelplanerapp.presenter.travel.routes.RoutesFragment
 
 class RootTravelFragment : Fragment(R.layout.fragment_root_travel) {
 
@@ -43,27 +41,5 @@ class RootTravelFragment : Fragment(R.layout.fragment_root_travel) {
                 else -> false
             }
         }
-
-//        childFragmentManager.beginTransaction()
-//            .replace(R.id.travel_container, CreateFragment())
-//            .commit()
-//
-//        binding.bottomNavigation.setOnItemSelectedListener { item ->
-//            when (item.itemId) {
-//                R.id.create -> {
-//                    childFragmentManager.beginTransaction()
-//                        .replace(R.id.travel_container, CreateFragment())
-//                        .commit()
-//                    true
-//                }
-//                R.id.list -> {
-//                    childFragmentManager.beginTransaction()
-//                        .replace(R.id.travel_container, RoutesFragment())
-//                        .commit()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
     }
 }

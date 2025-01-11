@@ -1,154 +1,192 @@
 [
     {
         "city": "Москва",
+        "city_en": "Moscow",
         "iata_code": "SVO"
     },
     {
         "city": "Санкт-Петербург",
+        "city_en": "Saint Petersburg",
         "iata_code": "LED"
     },
     {
         "city": "Новосибирск",
+        "city_en": "Novosibirsk",
         "iata_code": "OVB"
     },
     {
         "city": "Екатеринбург",
+        "city_en": "Yekaterinburg",
         "iata_code": "SVX"
     },
     {
         "city": "Казань",
+        "city_en": "Kazan",
         "iata_code": "KZN"
     },
     {
         "city": "Нижний Новгород",
+        "city_en": "Nizhny Novgorod",
         "iata_code": "GOJ"
     },
     {
         "city": "Челябинск",
+        "city_en": "Chelyabinsk",
         "iata_code": "CEK"
     },
     {
         "city": "Самара",
+        "city_en": "Samara",
         "iata_code": "KUF"
     },
     {
         "city": "Ростов-на-Дону",
+        "city_en": "Rostov-on-Don",
         "iata_code": "ROV"
     },
     {
         "city": "Уфа",
+        "city_en": "Ufa",
         "iata_code": "UFA"
     },
     {
         "city": "Воронеж",
+        "city_en": "Voronezh",
         "iata_code": "VOZ"
     },
     {
         "city": "Красноярск",
+        "city_en": "Krasnoyarsk",
         "iata_code": "KJA"
     },
     {
         "city": "Пермь",
+        "city_en": "Perm",
         "iata_code": "PEE"
     },
     {
         "city": "Тюмень",
+        "city_en": "Tyumen",
         "iata_code": "TJM"
     },
     {
         "city": "Владивосток",
+        "city_en": "Vladivostok",
         "iata_code": "VVO"
     },
     {
         "city": "Иркутск",
+        "city_en": "Irkutsk",
         "iata_code": "IKT"
     },
     {
         "city": "Барнаул",
+        "city_en": "Barnaul",
         "iata_code": "BAX"
     },
     {
         "city": "Томск",
+        "city_en": "Tomsk",
         "iata_code": "TOF"
     },
     {
         "city": "Сочи",
+        "city_en": "Sochi",
         "iata_code": "AER"
     },
     {
         "city": "Краснодар",
+        "city_en": "Krasnodar",
         "iata_code": "KRR"
     },
     {
         "city": "Ульяновск",
+        "city_en": "Ulyanovsk",
         "iata_code": "ULY"
     },
     {
         "city": "Омск",
+        "city_en": "Omsk",
         "iata_code": "OMS"
     },
     {
         "city": "Мурманск",
+        "city_en": "Murmansk",
         "iata_code": "MMK"
     },
     {
         "city": "Астрахань",
+        "city_en": "Astrakhan",
         "iata_code": "ASF"
     },
     {
         "city": "Тула",
+        "city_en": "Tula",
         "iata_code": "TUL"
     },
     {
         "city": "Калуга",
+        "city_en": "Kaluga",
         "iata_code": "KLF"
     },
     {
         "city": "Ярославль",
+        "city_en": "Yaroslavl",
         "iata_code": "ARJ"
     },
     {
         "city": "Саратов",
+        "city_en": "Saratov",
         "iata_code": "RTW"
     },
     {
         "city": "Симферополь",
+        "city_en": "Simferopol",
         "iata_code": "SIP"
     },
     {
         "city": "Кемерово",
+        "city_en": "Kemerovo",
         "iata_code": "KEJ"
     },
     {
         "city": "Ижевск",
+        "city_en": "Izhevsk",
         "iata_code": "IJK"
     },
     {
         "city": "Набережные Челны",
+        "city_en": "Naberezhnye Chelny",
         "iata_code": "NBC"
     },
     {
         "city": "Тамбов",
+        "city_en": "Tambov",
         "iata_code": "TBW"
     },
     {
         "city": "Киров",
+        "city_en": "Kirov",
         "iata_code": "KVX"
     },
     {
         "city": "Пенза",
+        "city_en": "Penza",
         "iata_code": "PEZ"
     },
     {
         "city": "Кострома",
+        "city_en": "Kostroma",
         "iata_code": "KMQ"
     },
     {
         "city": "Архангельск",
+        "city_en": "Arkhangelsk",
         "iata_code": "ARJ"
     },
     {
         "city": "Смоленск",
+        "city_en": "Smolensk",
         "iata_code": "LNX"
     }
 ]

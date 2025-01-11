@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_cityFragment_to_createFragment"
             app:destination="@id/createFragment" />
+        <argument
+            android:name="cities"
+            app:argType="com.example.travelplanerapp.data.model.RouteParam[]" />
     </fragment>
     <fragment
         android:id="@+id/graphFragment"

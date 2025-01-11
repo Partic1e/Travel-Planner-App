@@ -2,6 +2,7 @@ package com.example.travelplanerapp.di.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.travelplanerapp.presenter.graph.GraphViewModel
 import com.example.travelplanerapp.presenter.login.LoginViewModel
 import com.example.travelplanerapp.presenter.register.RegisterViewModel
 import com.example.travelplanerapp.presenter.travel.create.CreateViewModel
@@ -35,4 +36,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(CreateViewModel::class)
     fun bindCreateViewModel(viewModel: CreateViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GraphViewModel::class)
+    fun bindGraphViewModel(viewModel: GraphViewModel): ViewModel
 }

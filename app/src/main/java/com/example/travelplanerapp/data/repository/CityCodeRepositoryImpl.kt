@@ -15,11 +15,12 @@ class CityCodeRepositoryImpl @Inject constructor(
             .use { it.readText() }
 
         val cityCodeList = Gson().fromJson(jsonFileContent, Array<CityCode>::class.java)
-        return cityCodeList.associate { it.city to it.iata_code }
+        return cityCodeList.associate { it.city_en to it.iata_code }
     }
 
     data class CityCode(
         val city: String,
+        val city_en: String,
         val iata_code: String
     )
 }

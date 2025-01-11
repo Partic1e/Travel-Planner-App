@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.travelplanerapp.R
 import com.example.travelplanerapp.appComponent
 import com.example.travelplanerapp.data.model.City
+import com.example.travelplanerapp.data.model.RouteParam
 import com.example.travelplanerapp.databinding.FragmentCreateBinding
 import com.example.travelplanerapp.di.viewModel.ViewModelFactory
 import javax.inject.Inject
@@ -38,30 +40,37 @@ class CreateFragment : Fragment(R.layout.fragment_create) {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        getCities()
-
-        viewModel.route.observe(viewLifecycleOwner) {
-            adapter.submitList(it.toList())
-        }
+        observeViewModel()
 
         binding.addCitiesButton.setOnClickListener {
-            val destination = CreateFragmentDirections.actionCreateFragmentToCityFragment()
-            findNavController().navigate(destination)
+            val action = CreateFragmentDirections.actionCreateFragmentToCityFragment(viewModel.route.value.orEmpty().toTypedArray())
+            findNavController().navigate(action)
         }
 
         binding.createRouteButton.setOnClickListener {
             viewModel.addStartCity(binding.startCity.text.toString())
             viewModel.createRoute(binding.routeName.text.toString())
         }
-
     }
 
-    private fun getCities() {
-        parentFragmentManager.setFragmentResultListener("requestKey", this) { _, bundle ->
-            val cities = bundle.getParcelableArray("cityList")?.map { it as City }
+    private fun observeViewModel() {
+        viewModel.route.observe(viewLifecycleOwner) {
+            adapter.submitList(it.map { routeParam -> routeParam.cities })
+        }
 
-            if (cities!!.isNotEmpty()) {
-                viewModel.addCities(cities.toList())
+        viewModel.ticketsSaved.observe(viewLifecycleOwner) { isSaved ->
+            if (isSaved) {
+                viewModel.routeId.observe(viewLifecycleOwner) { routeId ->
+                    val action = CreateFragmentDirections.actionCreateFragmentToGraphFragment(routeId)
+                    findNavController().navigate(action)
+                }
+            }
+        }
+
+        parentFragmentManager.setFragmentResultListener("updatedRoute", this) { _, bundle ->
+            val updatedRoute = bundle.getParcelableArrayList<RouteParam>("routeList").orEmpty()
+            if (updatedRoute.isNotEmpty()) {
+                viewModel.updateRoute(updatedRoute)
             }
         }
     }

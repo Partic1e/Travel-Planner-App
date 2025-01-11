@@ -35,4 +35,7 @@ class TravelRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun getTickets(routeId: Int): List<TicketEntity> =
+        ticketDao.getTickets(routeId)
 }

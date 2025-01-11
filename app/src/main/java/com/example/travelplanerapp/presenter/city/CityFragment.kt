@@ -1,5 +1,6 @@
 package com.example.travelplanerapp.presenter.city
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.icu.util.Calendar
@@ -13,6 +14,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.travelplanerapp.R
 import com.example.travelplanerapp.appComponent
 import com.example.travelplanerapp.data.model.City
+import com.example.travelplanerapp.data.model.RouteParam
 import com.example.travelplanerapp.databinding.FragmentCityBinding
 
 class CityFragment : Fragment(R.layout.fragment_city) {
@@ -21,6 +23,7 @@ class CityFragment : Fragment(R.layout.fragment_city) {
     private val adapter = CityAdapter()
     private val cityList = mutableListOf<City>()
     private var selectedDate: String? = null
+    private var currentRoute = mutableListOf<RouteParam>()
 
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
@@ -30,11 +33,17 @@ class CityFragment : Fragment(R.layout.fragment_city) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        currentRoute = CityFragmentArgs.fromBundle(requireArguments()).cities.toMutableList()
+
         with(binding.cityArray) {
             adapter = this@CityFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+        setupListeners()
+    }
+
+    private fun setupListeners() {
         binding.date.setOnClickListener {
             showDatePicker()
         }
@@ -44,20 +53,21 @@ class CityFragment : Fragment(R.layout.fragment_city) {
         }
 
         binding.completeButton.setOnClickListener {
-            val bundle = Bundle().apply {
-                putParcelableArray("cityList", cityList.toTypedArray())
+            if (cityList.isNotEmpty()) {
+                currentRoute.add(RouteParam(cityList.toList()))
             }
-            parentFragmentManager.setFragmentResult("requestKey", bundle)
 
-            val destination = CityFragmentDirections.actionCityFragmentToCreateFragment()
-            findNavController().navigate(destination)
+            val bundle = Bundle().apply {
+                putParcelableArrayList("routeList", ArrayList(currentRoute))
+            }
+            parentFragmentManager.setFragmentResult("updatedRoute", bundle)
+            findNavController().popBackStack()
         }
     }
 
     private fun addCity() {
         val cityName = binding.cityEditText.text.toString().trim()
-
-        if (cityName.isEmpty() && selectedDate == null) {
+        if (cityName.isEmpty() || selectedDate == null) {
             Toast.makeText(requireContext(), "Введите город и дату", Toast.LENGTH_SHORT).show()
             return
         }
@@ -70,6 +80,7 @@ class CityFragment : Fragment(R.layout.fragment_city) {
         Toast.makeText(requireContext(), "Город добавлен", Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("DefaultLocale")
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -79,7 +90,7 @@ class CityFragment : Fragment(R.layout.fragment_city) {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
-                selectedDate = "$selectedDay.${selectedMonth + 1}.$selectedYear"
+                selectedDate = String.format("%d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
             },
             year,
             month,

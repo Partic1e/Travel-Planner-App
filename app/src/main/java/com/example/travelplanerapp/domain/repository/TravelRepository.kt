@@ -10,4 +10,6 @@ interface TravelRepository {
     suspend fun insertRoute(routeEntity: RouteEntity): Int
 
     suspend fun saveTickets(tickets: List<TicketEntity>)
+
+    suspend fun getTickets(routeId: Int): List<TicketEntity>
 }

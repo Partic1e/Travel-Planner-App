@@ -16,6 +16,8 @@ import com.example.travelplanerapp.domain.repository.TravelRepository
 import com.example.travelplanerapp.domain.repository.UserRepository
 import com.example.travelplanerapp.domain.usecase.GetRoutesForUserUseCase
 import com.example.travelplanerapp.domain.usecase.GetRoutesForUserUseCaseImpl
+import com.example.travelplanerapp.domain.usecase.GetTicketsForGraphUseCase
+import com.example.travelplanerapp.domain.usecase.GetTicketsForGraphUseCaseImpl
 import com.example.travelplanerapp.domain.usecase.LoginByLoginUseCase
 import com.example.travelplanerapp.domain.usecase.LoginByLoginUseCaseImpl
 import com.example.travelplanerapp.domain.usecase.RegisterUseCase
@@ -56,6 +58,10 @@ interface AppBindsModule {
 
     @Binds
     @Singleton
+    fun bindGetTicketsUseCase(useCase: GetTicketsForGraphUseCaseImpl): GetTicketsForGraphUseCase
+
+    @Binds
+    @Singleton
     fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
 
     @Binds
@@ -77,7 +83,7 @@ interface AppBindsModule {
             Room.databaseBuilder(
                 context,
                 TravelDatabase::class.java,
-                "travel"
+                "travel.db"
             ).build()
 
         @Provides
